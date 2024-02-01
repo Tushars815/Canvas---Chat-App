@@ -128,6 +128,8 @@ const Container = styled.div`
       .avatar {
         img {
           height: 3rem;
+          border: 2px solid black;
+          border-radius: 100%;
         }
       }
       .username {

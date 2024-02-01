@@ -188,7 +188,7 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     &:hover {
-      // background-color: #4e0eff;
+      background-color: #4e0eff;
     }
   }
   span {
