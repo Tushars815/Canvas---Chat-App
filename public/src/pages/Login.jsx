@@ -160,6 +160,8 @@ const FormContainer = styled.div`
   span {
     color: white;
     text-transform: uppercase;
+    margin: 1px auto;
+    font-weight: 800;
     a {
       color: #073ebc;
       text-decoration: none;
