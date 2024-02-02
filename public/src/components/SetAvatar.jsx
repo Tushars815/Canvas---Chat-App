@@ -5,7 +5,7 @@ import { Buffer } from "buffer";
 import loader from "../assets/loader3.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { setAvatarRoute } from "../utils/APIRoutes";
 export default function SetAvatar() {
   const api = `https://api.multiavatar.com/4645646`;
@@ -13,6 +13,7 @@ export default function SetAvatar() {
   const [avatars, setAvatars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
+  const [reloadFlag, setReloadFlag] = useState(false);
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -51,10 +52,15 @@ export default function SetAvatar() {
       }
     }
   };
+  const handleClick =(event)=>{
+    console.log(reloadFlag);
+    setIsLoading(false);
+    setReloadFlag(!reloadFlag);
+  }
 
   useEffect(async () => {
     const data = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       const image = await axios.get(
         `${api}/${Math.round(Math.random() * 1000)}`
       );
@@ -63,7 +69,10 @@ export default function SetAvatar() {
     }
     setAvatars(data);
     setIsLoading(false);
-  }, []);
+  }, [reloadFlag]);
+
+
+
   return (
     <>
       {isLoading ? (
@@ -97,6 +106,9 @@ export default function SetAvatar() {
             <button onClick={setProfilePicture} className="submit-btn">
               Set as Profile Picture
             </button>
+            <button onClick={handleClick} className="submit-btn">
+                Not liking these avatars
+            </button>
           </div>
 
           <ToastContainer />
@@ -105,6 +117,8 @@ export default function SetAvatar() {
     </>
   );
 }
+
+
 
 const Container = styled.div`
   display: flex;
@@ -119,6 +133,8 @@ const Container = styled.div`
   .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
     backdrop-filter: blur(5px);
     border: 10px solid black;
@@ -174,3 +190,4 @@ const Container = styled.div`
     }
   }
 `;
+
