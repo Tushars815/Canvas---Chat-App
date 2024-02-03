@@ -9,5 +9,3 @@ The Website is currently live. [Click here](https://canvas-chat-app.vercel.app/)
 **Sahil Sidana**  
 **Rajdeep Tiwari**  
 **Tushar Sharma**
-
-![](https://github.com/Tushars815/Canvas---Chat-App/blob/main/public/src/assets/welcome1.gif)
