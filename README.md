@@ -4,6 +4,8 @@
 
 The Website is currently live. [Click here](https://canvas-chat-app.vercel.app/) to visit.
 
+Made with JavaScript :heart:
+
 ### Meet Our Team:
 
 **Sahil Sidana**  
