@@ -3,9 +3,11 @@ import styled from "styled-components";
 import axios from "axios";
 import { Buffer } from "buffer";
 import loader from "../assets/loader3.gif";
+import tick from "../assets/check-mark.png";
+import refresh from "../assets/circular.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setAvatarRoute } from "../utils/APIRoutes";
 export default function SetAvatar() {
   const api = `https://api.multiavatar.com/4645646`;
@@ -52,11 +54,11 @@ export default function SetAvatar() {
       }
     }
   };
-  const handleClick =(event)=>{
+  const handleClick = (event) => {
     console.log(reloadFlag);
     setIsLoading(false);
     setReloadFlag(!reloadFlag);
-  }
+  };
 
   useEffect(async () => {
     const data = [];
@@ -70,8 +72,6 @@ export default function SetAvatar() {
     setAvatars(data);
     setIsLoading(false);
   }, [reloadFlag]);
-
-
 
   return (
     <>
@@ -103,22 +103,23 @@ export default function SetAvatar() {
                 );
               })}
             </div>
-            <button onClick={setProfilePicture} className="submit-btn">
-              Set as Profile Picture
-            </button>
-            <button onClick={handleClick} className="submit-btn">
-                Not liking these avatars
-            </button>
+            <div className="btn-container">
+              <button onClick={setProfilePicture} className="submit-btn">
+                <img src={tick} alt="" />
+                Accept
+              </button>
+              <button onClick={handleClick} className="submit-btn">
+                <img src={refresh} alt="" />
+                Try More
+              </button>
+            </div>
           </div>
-
           <ToastContainer />
         </Container>
       )}
     </>
   );
 }
-
-
 
 const Container = styled.div`
   display: flex;
@@ -151,7 +152,7 @@ const Container = styled.div`
   .title-container {
     h1 {
       color: white;
-      text-shadow: 0 0 55px #050000, 0 0 18px #000050;
+      text-shadow: 0 0 55px #050000, 0 0 18px #050000;
     }
   }
   .avatars {
@@ -160,34 +161,47 @@ const Container = styled.div`
 
     .avatar {
       border: 0.4rem solid black;
-      padding: 0.4rem;
+      /* padding: 0.4rem; */
       border-radius: 5rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: 0.5s ease-in-out;
+      transition: 0.2s ease-in-out;
       img {
         height: 6rem;
-        transition: 0.5s ease-in-out;
+        /* transition: 0.5s ease-in-out; */
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
     .selected {
       border: 0.4rem solid #073ebc;
     }
   }
+  .btn-container {
+    display: flex;
+  }
   .submit-btn {
+    margin-right: 10px;
     background-color: #073ebc;
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: none;
     font-weight: bold;
     cursor: pointer;
     border-radius: 0.4rem;
-    font-size: 1rem;
+    font-size: 1.35rem;
     text-transform: uppercase;
+    transition: 0.2s ease-in-out;
     &:hover {
-      background-color: #073ebc;
+      /* background-color: #073ebc; */
+      box-shadow: 1px 1px 5px black;
+    }
+    img {
+      height: 1.5rem;
+      /* width: 1.25rem; */
+      margin-right: 7px;
     }
   }
 `;
-
