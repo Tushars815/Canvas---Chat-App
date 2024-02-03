@@ -10,4 +10,4 @@ The Website is currently live. [Click here](https://canvas-chat-app.vercel.app/)
 **Rajdeep Tiwari**  
 **Tushar Sharma**
 
-![](https://github.com/Tushars815/Canvas---Chat-App/blob/main/public/src/assets/welcome1.gif =250x250)
+![](https://github.com/Tushars815/Canvas---Chat-App/blob/main/public/src/assets/welcome1.gif)
