@@ -120,7 +120,6 @@ const Container = styled.div`
         }
         :hover{
           transform: scale(1.25);
-          /* height: 6rem; */
         }
       }
       .username {

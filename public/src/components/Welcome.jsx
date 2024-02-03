@@ -54,5 +54,6 @@ const Container = styled.div`
     position: absolute;
     top: 11.5px;
     right: 32px;
+    
   }
 `;
