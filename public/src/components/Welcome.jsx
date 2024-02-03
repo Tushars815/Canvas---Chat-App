@@ -52,7 +52,7 @@ const Container = styled.div`
   }
   .logout-header {
     position: absolute;
-    top: 12px;
+    top: 11.5px;
     right: 32px;
   }
 `;
