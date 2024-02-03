@@ -20,7 +20,7 @@ export default function Welcome() {
       <h1>
         नमस्ते, <span>{userName}!</span>
       </h1>
-      <h3>Please select a chat to Start messaging.</h3>
+      <h3>Step into a Chatting Arena</h3>
     </Container>
   );
 }
