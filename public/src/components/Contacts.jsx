@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/graffiti-art.png";
 import Meme from "../assets/loader3.gif";
 
 export default function Contacts({ contacts, changeChat }) {
+  const navigate= useNavigate();
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -18,6 +20,9 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
+  const handleSetAvatar= ()=>{
+    navigate("/setAvatar")
+  }
   return (
     <>
       {currentUserImage && currentUserImage && (
@@ -50,7 +55,7 @@ export default function Contacts({ contacts, changeChat }) {
             })}
           </div>
           <div className="current-user">
-            <div className="wrapper">
+            <div className="wrapper" onClick={handleSetAvatar}>
               <div className="avatar">
                 <img
                   src={`data:image/svg+xml;base64,${currentUserImage}`}
@@ -162,6 +167,9 @@ const Container = styled.div`
       position: relative;
       transition: 1s;
       transform-style: preserve-3d;
+      :hover{
+        cursor: pointer;
+      }
     }
     .avatar {
       position: absolute;
