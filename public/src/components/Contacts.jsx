@@ -112,13 +112,13 @@ const Container = styled.div`
       align-items: center;
       transition: 0.2s ease-in-out;
       .avatar {
-        transition: transform .2s;
+        transition: transform 0.2s cubic-bezier(0.68, -0.6, 0.32, 1.6);
         img {
           height: 3rem;
           border: 2px solid black;
           border-radius: 100%;
         }
-        :hover{
+        :hover {
           transform: scale(1.25);
         }
       }
@@ -151,7 +151,6 @@ const Container = styled.div`
         border: 2px solid black;
         border-radius: 100%;
       }
-
     }
     .username {
       h2 {
