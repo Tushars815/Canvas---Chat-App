@@ -37,10 +37,17 @@ export default function ChatContainer({ currentChat, socket }) {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
     );
+    const currentTime = new Date();
+    const options = { hour: '2-digit', minute: '2-digit' };
+    const realTime = currentTime.toLocaleTimeString([], options);
+    const realDate = currentTime.toLocaleDateString();
+    console.log(msg);
     socket.current.emit("send-msg", {
       to: currentChat._id,
       from: data._id,
       msg,
+      realTime,
+      realDate
     });
     await axios.post(sendMessageRoute, {
       from: data._id,
@@ -49,14 +56,15 @@ export default function ChatContainer({ currentChat, socket }) {
     });
 
     const msgs = [...messages];
-    msgs.push({ fromSelf: true, message: msg });
+    msgs.push({ fromSelf: true, message: msg, realTime: realTime, realDate: realDate });
     setMessages(msgs);
   };
 
   useEffect(() => {
     if (socket.current) {
-      socket.current.on("msg-recieve", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
+      socket.current.on("msg-recieve", (message) => {
+        console.log(message);
+        setArrivalMessage({ fromSelf: false, message: message.msg, realTime: message.realTime, realDate: message.realDate });
       });
     }
   }, []);
@@ -96,6 +104,9 @@ export default function ChatContainer({ currentChat, socket }) {
               >
                 <div className="content ">
                   <p>{message.message}</p>
+                  <p>{message.realTime}</p>
+                  <p>{message.realDate}</p>
+
                 </div>
               </div>
             </div>
