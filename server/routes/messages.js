@@ -25,11 +25,13 @@ router.post("/getmsg/", async (req, res, next) => {
           $all: [from, to],
         },
       }).sort({ updatedAt: 1 });
-  
+      const options = { hour: '2-digit', minute: '2-digit' };
       const projectedMessages = messages.map((msg) => {
         return {
           fromSelf: msg.sender.toString() === from,
           message: msg.message.text,
+          realTime:msg.createdAt.toLocaleTimeString([],options),
+          realDate: msg.createdAt.toLocaleDateString()
         };
       });
       res.json(projectedMessages);
