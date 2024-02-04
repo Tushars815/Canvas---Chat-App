@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../assets/graffiti-art.png";
+import Meme from "../assets/loader3.gif";
 
 export default function Contacts({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
@@ -49,11 +50,16 @@ export default function Contacts({ contacts, changeChat }) {
             })}
           </div>
           <div className="current-user">
-            <div className="avatar">
-              <img
-                src={`data:image/svg+xml;base64,${currentUserImage}`}
-                alt="avatar"
-              />
+            <div className="wrapper">
+              <div className="avatar">
+                <img
+                  src={`data:image/svg+xml;base64,${currentUserImage}`}
+                  alt="avatar"
+                />
+              </div>
+              <div className="meme">
+                <img src={Meme} alt="meme" />
+              </div>
             </div>
             <div className="username">
               <h2>{currentUserName}</h2>
@@ -135,6 +141,7 @@ const Container = styled.div`
   }
 
   .current-user {
+    perspective: 800px;
     background-color: #5a7367;
     font-family: "Yatra One", system-ui;
     // font-size: 1.25rem;
@@ -144,14 +151,51 @@ const Container = styled.div`
     border-top: 2px solid black;
     border-right: 2px solid black;
     gap: 2rem;
+    .wrapper {
+      height: 4.5rem;
+      width: 4.5rem;
+      /* border: 2px solid black; */
+      border-radius: 100%;
+      position: relative;
+      transition: 1s;
+      transform-style: preserve-3d;
+    }
     .avatar {
+      position: absolute;
+      /* background-color: blueviolet; */
+      z-index: 2; /* initially above */
+      backface-visibility: hidden;
       img {
-        height: 4rem;
+        height: 4.5rem;
         max-inline-size: 100%;
-        border: 2px solid black;
+        border: 2.5px solid black;
         border-radius: 100%;
       }
     }
+    .meme {
+      /* border: 2px solid black; */
+      position: absolute;
+      /* background-color: blanchedalmond; */
+      z-index: 1; /* initially below */
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      width: 100%;
+      img {
+        height: 4.5rem;
+        max-inline-size: 100%;
+        border: 2px solid black;
+        border-radius: 100%;
+        /* transform: scale(1.25); */
+        /* transition: transform 0.2s ease-in-out; */
+      }
+    }
+    .wrapper:hover {
+      transform: rotateY(180deg);
+      /* transform: scale(1.25); */
+    }
+    /* .img:hover {
+      transform: scale(1.25);
+    } */
     .username {
       h2 {
         color: white;
