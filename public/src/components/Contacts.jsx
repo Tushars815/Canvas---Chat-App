@@ -117,6 +117,9 @@ const Container = styled.div`
       gap: 1rem;
       align-items: center;
       transition: 0.2s ease-in-out;
+      :hover .avatar {
+        transform: scale(1.25);
+      }
       .avatar {
         transition: transform 0.2s cubic-bezier(0.68, -0.6, 0.32, 1.6);
         img {
@@ -124,9 +127,9 @@ const Container = styled.div`
           border: 2px solid black;
           border-radius: 100%;
         }
-        :hover {
+        /* :hover {
           transform: scale(1.25);
-        }
+        } */
       }
       .username {
         h3 {
