@@ -25,19 +25,23 @@ router.post("/getmsg/", async (req, res, next) => {
         $all: [from, to],
       },
     }).sort({ updatedAt: 1 });
-    const options = {
+    const TimeOptions = {
       hour: "2-digit",
       minute: "2-digit",
       timeZone: "Asia/Kolkata",
+    };
+    const DateOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: 'Asia/Kolkata',
     };
     const projectedMessages = messages.map((msg) => {
       return {
         fromSelf: msg.sender.toString() === from,
         message: msg.message.text,
-        realTime: msg.createdAt.toLocaleTimeString([], options),
-        realDate: msg.createdAt.toLocaleDateString([], {
-          timeZone: "Asia/Kolkata",
-        }),
+        realTime: msg.createdAt.toLocaleTimeString([], TimeOptions),
+        realDate: msg.createdAt.toLocaleDateString('en-IN', DateOptions),
       };
     });
     res.json(projectedMessages);

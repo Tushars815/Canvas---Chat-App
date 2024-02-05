@@ -37,10 +37,20 @@ export default function ChatContainer({ currentChat, socket }) {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
     );
+    const TimeOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Kolkata",
+    };
+    const DateOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: 'Asia/Kolkata',
+    };
     const currentTime = new Date();
-    const options = { hour: '2-digit', minute: '2-digit' };
-    const realTime = currentTime.toLocaleTimeString([], options);
-    const realDate = currentTime.toLocaleDateString();
+    const realTime = currentTime.toLocaleTimeString([], TimeOptions);
+    const realDate = currentTime.toLocaleDateString('en-IN', DateOptions);
     console.log(msg);
     socket.current.emit("send-msg", {
       to: currentChat._id,
