@@ -40,6 +40,7 @@ export default function ChatContainer({ currentChat, socket }) {
     const TimeOptions = {
       hour: "2-digit",
       minute: "2-digit",
+      hour12: true,
       timeZone: "Asia/Kolkata",
     };
     const DateOptions = {

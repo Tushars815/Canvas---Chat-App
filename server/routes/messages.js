@@ -28,6 +28,7 @@ router.post("/getmsg/", async (req, res, next) => {
     const TimeOptions = {
       hour: "2-digit",
       minute: "2-digit",
+      hour12: true,
       timeZone: "Asia/Kolkata",
     };
     const DateOptions = {
