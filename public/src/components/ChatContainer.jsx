@@ -215,6 +215,7 @@ const Container = styled.div`
           text-align: right;
           .date,
           .time {
+            text-transform: uppercase;
             font-size: 12px;
             color: #a4daf6;
             margin-top: 10px;
