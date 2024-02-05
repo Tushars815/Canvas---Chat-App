@@ -1,15 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import styled from "styled-components";
 import Picker from "emoji-picker-react";
 
-export default function ChatInput({ handleSendMsg ,currentChat }) {
+export default function ChatInput({ handleSendMsg, currentChat }) {
   const [msg, setMsg] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     setMsg("");
-  },[currentChat])
+  }, [currentChat]);
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
@@ -69,6 +69,10 @@ const Container = styled.div`
     gap: 1rem;
     .emoji {
       position: relative;
+      transition: transform 0.2s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+      :hover {
+        transform: scale(1.25);
+      }
       svg {
         font-size: 1.5rem;
         color: #aae147;
@@ -137,6 +141,7 @@ const Container = styled.div`
       align-items: center;
       background-color: #073ebc;
       border: none;
+      transition: opacity 0.5s ease;
       @media screen and (min-width: 720px) and (max-width: 1080px) {
         padding: 0.3rem 1rem;
         svg {
@@ -146,6 +151,9 @@ const Container = styled.div`
       :hover {
         cursor: pointer;
         // border: 2px solid black;
+      }
+      :active {
+        opacity: 0.5;
       }
       svg {
         font-size: 2rem;

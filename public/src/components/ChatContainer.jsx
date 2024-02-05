@@ -43,21 +43,21 @@ export default function ChatContainer({ currentChat, socket }) {
       timeZone: "Asia/Kolkata",
     };
     const DateOptions = {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      timeZone: 'Asia/Kolkata',
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "Asia/Kolkata",
     };
     const currentTime = new Date();
     const realTime = currentTime.toLocaleTimeString([], TimeOptions);
-    const realDate = currentTime.toLocaleDateString('en-IN', DateOptions);
+    const realDate = currentTime.toLocaleDateString("en-IN", DateOptions);
     console.log(msg);
     socket.current.emit("send-msg", {
       to: currentChat._id,
       from: data._id,
       msg,
       realTime,
-      realDate
+      realDate,
     });
     await axios.post(sendMessageRoute, {
       from: data._id,
@@ -66,7 +66,12 @@ export default function ChatContainer({ currentChat, socket }) {
     });
 
     const msgs = [...messages];
-    msgs.push({ fromSelf: true, message: msg, realTime: realTime, realDate: realDate });
+    msgs.push({
+      fromSelf: true,
+      message: msg,
+      realTime: realTime,
+      realDate: realDate,
+    });
     setMessages(msgs);
   };
 
@@ -74,7 +79,12 @@ export default function ChatContainer({ currentChat, socket }) {
     if (socket.current) {
       socket.current.on("msg-recieve", (message) => {
         console.log(message);
-        setArrivalMessage({ fromSelf: false, message: message.msg, realTime: message.realTime, realDate: message.realDate });
+        setArrivalMessage({
+          fromSelf: false,
+          message: message.msg,
+          realTime: message.realTime,
+          realDate: message.realDate,
+        });
       });
     }
   }, []);
@@ -114,16 +124,21 @@ export default function ChatContainer({ currentChat, socket }) {
               >
                 <div className="content ">
                   <p>{message.message}</p>
-                  <p>{message.realTime}</p>
-                  <p>{message.realDate}</p>
-
+                  <div className="date-time">
+                    <span className="time">
+                      <p>{message.realTime}</p>
+                    </span>
+                    <span className="date">
+                      <p>{message.realDate}</p>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-      <ChatInput handleSendMsg={handleSendMsg} currentChat={currentChat}/>
+      <ChatInput handleSendMsg={handleSendMsg} currentChat={currentChat} />
     </Container>
   );
 }
@@ -185,11 +200,25 @@ const Container = styled.div`
         overflow-wrap: break-word;
         background-color: black;
         padding: 1rem;
+        padding-bottom: 0.5rem;
         font-size: 1.25rem;
         border-radius: 1rem;
         color: white;
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
+        }
+        .date-time {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0px;
+          text-align: right;
+          .date,
+          .time {
+            font-size: 12px;
+            color: #a4daf6;
+            margin-top: 10px;
+            margin-right: 5px;
+          }
         }
       }
     }
