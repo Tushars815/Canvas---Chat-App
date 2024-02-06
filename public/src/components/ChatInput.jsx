@@ -39,7 +39,7 @@ export default function ChatInput({ handleSendMsg, currentChat }) {
       <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
           type="text"
-          placeholder="type your message here"
+          placeholder="Jo bhi mai, kehna chaahun ...."
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
